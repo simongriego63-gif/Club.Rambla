@@ -1,12 +1,12 @@
 :root {
     --bg-main: #0B0F17;  
     --bg-card: #161B22;  
-    --accent: #72BF44;   /* Verde pasto orgánico actualizado */
+    --accent: #72BF44;   
     --dark: #FFFFFF;     
     --dark-soft: rgba(255, 255, 255, 0.12); 
     --white: #FFFFFF;
     
-    --aurora-1: rgba(114, 191, 68, 0.15); /* Reflejo del nuevo verde */
+    --aurora-1: rgba(114, 191, 68, 0.15); 
     --aurora-2: rgba(0, 0, 0, 0.5);     
     --aurora-3: rgba(255, 255, 255, 0.02);
 }
@@ -107,30 +107,31 @@ body {
 .stamps-container { background: rgba(255, 255, 255, 0.02); border-radius: 20px; padding: 24px 20px; margin-bottom: 16px; border: 2px dashed var(--dark-soft); }
 .stamps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; justify-items: center; }
 
-/* === TAZAS Y DESCUENTOS === */
-.stamp-cup { width: 44px; height: 44px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+/* === ÍCONOS DE SELLOS (TAZA, MEDIALUNA, RAYO) === */
+.stamp-cup, .stamp-bakery, .stamp-bolt { width: 44px; height: 44px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+/* Estados Vacíos */
 .stamp-cup .cup-path { fill: none; stroke: var(--dark-soft); stroke-width: 2; transition: all 0.4s ease; }
 .stamp-cup .cup-handle { fill: none; stroke: var(--dark-soft); stroke-width: 4; stroke-linecap: round; transition: all 0.4s ease; }
 .stamp-cup .steam-path { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; opacity: 0; transition: opacity 0.4s ease; }
 .stamp-cup .coffee-fill { fill: none; opacity: 0; transform: scaleY(0); transform-origin: bottom; transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease; }
 
+.stamp-bakery .bakery-main, .stamp-bolt .bolt-main { fill: var(--dark-soft); transition: all 0.4s ease; }
+
+/* Estados Llenos */
 .stamp-cup.filled { transform: scale(1.1); filter: drop-shadow(0 4px 0px rgba(0, 0, 0, 0.3)); }
 .stamp-cup.filled .cup-path { fill: var(--dark); stroke: var(--dark); }
 .stamp-cup.filled .cup-handle { stroke: var(--dark); }
 .stamp-cup.filled .coffee-fill { fill: var(--accent); opacity: 1; transform: scaleY(1); }
 .stamp-cup.filled .steam-path { opacity: 0.8; animation: steam 2.5s ease-in-out infinite; animation-delay: 0.5s; }
 
+.stamp-bakery.filled, .stamp-bolt.filled { transform: scale(1.1); filter: drop-shadow(0 4px 0px rgba(0, 0, 0, 0.3)); }
+.stamp-bakery.filled .bakery-main { fill: var(--accent); }
+.stamp-bolt.filled .bolt-main { fill: var(--accent); }
+
 @keyframes steam { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: 0.8; } 100% { transform: translateY(-15px); opacity: 0; } }
 
-.stamp-discount { width: 44px; height: 44px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-.stamp-discount .discount-border { fill: none; stroke: var(--dark-soft); stroke-width: 4; stroke-dasharray: 6 3; stroke-linecap: round; transition: all 0.4s ease; }
-.stamp-discount .discount-text { fill: var(--dark-soft); font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 42px; transition: all 0.4s ease; }
-
-.stamp-discount.filled { transform: scale(1.1) rotate(-10deg); filter: drop-shadow(0 4px 0px rgba(0, 0, 0, 0.3)); }
-.stamp-discount.filled .discount-border { fill: var(--accent); stroke: var(--dark); stroke-dasharray: none; }
-.stamp-discount.filled .discount-text { fill: #000000; }
-
-.stamp-cup.used, .stamp-discount.used { opacity: 0.2 !important; filter: grayscale(100%) contrast(60%) !important; transform: scale(0.95) !important; box-shadow: none !important; }
+/* (Se removió intencionalmente la regla .used con escala de grises y opacidad para que los sellos mantengan el color) */
 
 .stamps-text { text-align: center; font-size: 11px; color: var(--dark); opacity: 0.6; margin: 0; font-weight: 600; }
 
@@ -161,6 +162,10 @@ body {
 /* === SISTEMA DE PARTÍCULAS === */
 .particle { position: fixed; width: 8px; height: 8px; background-color: var(--accent); border-radius: 50%; pointer-events: none; z-index: 9999; }
 
+/* === CONFETTI DE CELEBRACIÓN (OP1) === */
+#confettiContainer { position: fixed; inset: 0; pointer-events: none; z-index: 9998; overflow: hidden; }
+.confetti { position: absolute; width: 10px; height: 10px; opacity: 0; }
+
 /* === MODALES Y BOTONES === */
 .btn-cerrar { margin-top: 32px; background: none; color: var(--dark); opacity: 0.5; border: none; width: 100%; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; padding: 16px; border-radius: 14px; transition: all 0.3s ease; }
 .btn-cerrar:hover { opacity: 1; background: var(--dark-soft); }
@@ -174,5 +179,5 @@ body {
 @media (max-width: 380px) {
     .wallet-card { padding: 24px; }
     .stamps-grid { gap: 8px; }
-    .stamp-cup, .stamp-discount { width: 38px; height: 38px; }
+    .stamp-cup, .stamp-bakery, .stamp-bolt { width: 38px; height: 38px; }
 }
