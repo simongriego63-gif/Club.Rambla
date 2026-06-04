@@ -102,7 +102,6 @@ class RamblaApp {
     }
 
     abrirTarjeta(celular) {
-        // Se cambió bgcolor a FFFFFF (blanco) y color a 000000 (negro principal) para el QR de Rambla
         this.ui.qr.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${celular}&bgcolor=FFFFFF&color=000000`;
         this.ui.telLabel.innerText = `******${celular.slice(-4)}`;
 
@@ -248,8 +247,7 @@ class RamblaApp {
     }
 }
 
-    new RamblaApp();
-
+new RamblaApp();
 
 // --- LÓGICA DE INSTALACIÓN PWA ---
 let eventoInstalacion = null;
