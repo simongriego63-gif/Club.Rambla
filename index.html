@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>cafe rambla.</title>
+    <title>caferambla.</title>
     
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#FCE17A">
+    <meta name="theme-color" content="#0B0F17">
     <link rel="apple-touch-icon" href="icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
     
@@ -29,7 +29,6 @@
 
     <div class="main-container">
         
-        <!-- PANTALLA DE CARGA -->
         <div id="pantallaSkeleton">
             <div class="wallet-card">
                 <div class="card-header-skeleton">
@@ -54,17 +53,14 @@
             </div>
         </div>
 
-        <!-- PANTALLA DE REGISTRO -->
         <div id="pantallaRegistro">
             <div class="registro-card">
-                <div class="logo-container">
+                <div class="logo-container" style="margin-bottom: 40px;">
                     <div class="logo-animado">
-                        <span class="logo-text" style="color: var(--dark); font-size: 38px; margin-bottom: -10px;">cafe</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 110" width="180" height="55">
-                          <text x="200" y="90" font-family="'Montserrat', sans-serif" font-weight="900" font-size="85" fill="var(--accent)" text-anchor="middle" letter-spacing="-3px">rambla<tspan fill="#000000">.</tspan></text>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 110" width="230" height="60">
+                          <text x="230" y="85" font-family="'Montserrat', sans-serif" font-weight="900" font-size="75" fill="var(--dark)" text-anchor="middle" letter-spacing="-3px">caferambla<tspan fill="var(--accent)">.</tspan></text>
                         </svg>
                     </div>
-                    <p class="welcome-text">ESPECIALIDAD</p>
                 </div>
                 
                 <div class="input-group">
@@ -82,20 +78,17 @@
             </div>
         </div>
 
-        <!-- PANTALLA TARJETA -->
         <div id="pantallaTarjeta">
             <p class="texto-girar">Toca la tarjeta para girarla</p>
             
             <div class="flip-container" onclick="this.classList.toggle('flipped')">
                 <div class="flipper">
-                    <!-- FRENTE DE LA TARJETA -->
                     <div class="front">
                         <div class="wallet-card">
                             <div class="card-header">
-                                <div style="display: flex; flex-direction: column;">
-                                    <span style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 20px; color: var(--dark); line-height: 0.9; letter-spacing: -1px;">cafe</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 100" width="110" height="35" style="margin-top: 2px;">
-                                      <text x="0" y="80" font-family="'Montserrat', sans-serif" font-weight="900" font-size="85" fill="var(--accent)" text-anchor="start" letter-spacing="-3px">rambla<tspan fill="#000000">.</tspan></text>
+                                <div style="display: flex; align-items: center;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 110" width="140" height="40">
+                                      <text x="0" y="85" font-family="'Montserrat', sans-serif" font-weight="900" font-size="75" fill="var(--dark)" text-anchor="start" letter-spacing="-3px">caferambla<tspan fill="var(--accent)">.</tspan></text>
                                     </svg>
                                 </div>
                                 <div class="user-info">
@@ -161,15 +154,12 @@
                         </div>
                     </div>
                     
-                    <!-- DORSO DE LA TARJETA -->
                     <div class="back">
                         <div class="back-logo-animado">
-                            <span style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 32px; color: var(--dark); line-height: 1; letter-spacing: -1px; margin-bottom: -5px;">cafe</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 110" width="200" height="65">
-                              <text x="200" y="90" font-family="'Montserrat', sans-serif" font-weight="900" font-size="85" fill="var(--accent)" text-anchor="middle" letter-spacing="-3px">rambla<tspan fill="#000000">.</tspan></text>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 110" width="220" height="60">
+                              <text x="230" y="85" font-family="'Montserrat', sans-serif" font-weight="900" font-size="75" fill="var(--dark)" text-anchor="middle" letter-spacing="-3px">caferambla<tspan fill="var(--accent)">.</tspan></text>
                             </svg>
                         </div>
-                        <div class="back-subtitle">ESPECIALIDAD</div>
                     </div>
                 </div>
             </div>
