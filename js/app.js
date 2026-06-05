@@ -165,7 +165,6 @@ class RamblaApp {
             this.ui.gridSellos.appendChild(svgElement);
         }
 
-        // Se quitó la estrellita de "Disponible"
         this.ui.status3.innerText = desc3Usado ? "Canjeado ✓" : (puntosActuales >= 3 ? "Disponible" : "");
         this.ui.status3.style.color = desc3Usado ? "var(--dark)" : "var(--accent)";
         
@@ -178,7 +177,9 @@ class RamblaApp {
             this.ui.premio.innerText = "¡Bebida gratis lista!";
             this.ui.premio.classList.add('premio-listo');
             
-            if(animarNuevos) this.dispararConfetti();
+            if(animarNuevos || this.primeraCarga) {
+                this.dispararConfetti();
+            }
         } else {
             this.ui.premio.innerText = "En progreso";
             this.ui.premio.classList.remove('premio-listo');
