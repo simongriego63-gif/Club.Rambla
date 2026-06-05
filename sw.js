@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rambla-cache-v1'; // Cambiamos el nombre para forzar a los celulares a descartar la versión "beki"
+const CACHE_NAME = 'rambla-cache-v2'; 
 
 // Lista de archivos clave que el celular debe guardar en memoria
 const urlsToCache = [
