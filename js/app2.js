@@ -224,7 +224,7 @@ class RamblaApp {
         const container = document.getElementById('confettiContainer');
         if(!container) return;
         
-        // Colores del confetti adaptados al fondo blanco (se incluye negro y grises en lugar de blancos puros)
+        // Colores del confetti adaptados al fondo blanco (verdes, negros y plateados)
         const colors = ['#72BF44', '#000000', '#D1D5DB', '#10B981'];
         const shapes = ['circle', 'square', 'triangle'];
 
