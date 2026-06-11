@@ -102,7 +102,6 @@ class RamblaApp {
     }
 
     abrirTarjeta(celular) {
-        // Codi QR arreglat: Blanc fons pur amb color negre pur
         this.ui.qr.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${celular}&bgcolor=FFFFFF&color=000000`;
         this.ui.telLabel.innerText = `******${celular.slice(-4)}`;
 
@@ -226,7 +225,6 @@ class RamblaApp {
         const container = document.getElementById('confettiContainer');
         if(!container) return;
         
-        // Confeti invertido (Tonos blancs i grisos)
         const colors = ['#FFFFFF', '#EFEFEF', '#CCCCCC', '#999999'];
         const shapes = ['circle', 'square', 'triangle'];
 
