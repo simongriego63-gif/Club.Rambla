@@ -1,13 +1,12 @@
 :root {
-    --bg-main: #1A1A1A;  /* Fondo principal oscuro */
-    --bg-card: #111111;  /* Tarjetas en negro puro/casi puro */
-    --accent: #FFFFFF;   /* El punto del logo y los acentos son Blanco puro */
-    --dark: #EFEFEF;     /* Lo que antes era negro, ahora es texto claro/blanco */
-    --dark-soft: rgba(255, 255, 255, 0.25); /* Tono suave para bordes e íconos inactivos */
-    --white: #111111;    /* Lo que antes era texto blanco en botones, ahora es negro */
+    --bg-main: #1A1A1A;  
+    --bg-card: #111111;  
+    --accent: #72BF44;   /* Restauramos el Verde Pasto para los acentos y el logo */
+    --dark: #EFEFEF;     /* Texto y vectores claros */
+    --dark-soft: rgba(255, 255, 255, 0.25); 
+    --white: #111111;    
     
-    /* Aurora invertida a destellos blancos y negros */
-    --aurora-1: rgba(255, 255, 255, 0.05); 
+    --aurora-1: rgba(114, 191, 68, 0.15); 
     --aurora-2: rgba(0, 0, 0, 0.4);     
     --aurora-3: rgba(255, 255, 255, 0.03);
 }
@@ -76,7 +75,7 @@ body {
 .input-label { font-size: 13px; color: var(--dark); font-weight: 700; margin-bottom: 10px; display: block; opacity: 0.8; }
 .input-box { width: 100%; padding: 18px 20px; border-radius: 16px; border: 2px solid var(--dark-soft); font-size: 16px; font-family: 'Inter', sans-serif; font-weight: 600; background: rgba(255, 255, 255, 0.03); color: var(--dark); transition: all 0.3s ease; outline: none; }
 .input-box::placeholder { color: var(--dark); opacity: 0.4; }
-.input-box:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1); }
+.input-box:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(114, 191, 68, 0.2); }
 
 .btn-primary { width: 100%; padding: 20px 32px; border-radius: 16px; border: 2px solid var(--dark); background: var(--dark); color: var(--white); font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 12px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15); }
 .btn-primary:hover { transform: translateY(-2px); background: #FFFFFF; box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25); }
@@ -99,7 +98,7 @@ body {
 .front { transform: rotateY(0deg); }
 .back { transform: rotateY(180deg); }
 
-.card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 .user-info { text-align: right; }
 .user-nickname { font-size: 16px; font-weight: 800; color: var(--dark); }
 .user-tel-label { font-size: 12px; color: var(--dark); opacity: 0.6; font-weight: 600; display: block; margin-top: 4px; }
@@ -150,14 +149,13 @@ body {
 
 /* === QR SECTION === */
 .qr-section { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-/* AQUÍ HE FORÇAT EL FONS BLANC PEL CODI QR PERQUÈ ES VEGI BÉ */
 .qr-box { background: #FFFFFF; padding: 14px; border-radius: 18px; border: 2px solid var(--dark); }
 .qr-box img { display: block; width: 110px; height: 110px; }
 .user-id { font-size: 11px; color: var(--dark); opacity: 0.6; letter-spacing: 2px; font-weight: 700; text-transform: uppercase; }
 
 /* === DORSO TARJETA === */
 .back { background: var(--bg-card); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px; border: 3px solid var(--dark); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); min-height: 430px; }
-.back-logo-animado { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.back-logo-animado { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; height: 100%; }
 
 /* === SISTEMA DE PARTÍCULAS === */
 .particle { position: fixed; width: 8px; height: 8px; background-color: var(--dark); border-radius: 50%; pointer-events: none; z-index: 9999; }
