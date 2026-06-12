@@ -5,6 +5,7 @@
     --dark: #111111;     /* Negro principal para textos */
     --dark-soft: rgba(0, 0, 0, 0.25); /* Tono suave para bordes e íconos inactivos */
     --white: #EFEFEF;    /* Mapeado al color de la tarjeta para consistencia */
+    --verde-chill: #8DE055; /* Color acento verde para sellos especiales */
     
     /* Aurora ahora en escala de grises para un efecto niebla */
     --aurora-1: rgba(0, 0, 0, 0.05); 
@@ -180,3 +181,12 @@ body {
     .stamps-grid { gap: 8px; }
     .stamp-cup, .stamp-bakery, .stamp-bolt { width: 38px; height: 38px; }
 }
+
+/* === REGLAS PARA SELLOS ESPECIALES === */
+.stamp-cup.sello-especial.filled .cup-path { fill: var(--verde-chill); stroke: var(--verde-chill); }
+.stamp-cup.sello-especial.filled .cup-handle { stroke: var(--verde-chill); }
+.stamp-cup.sello-especial.filled .coffee-fill { fill: var(--verde-chill); }
+.stamp-cup.sello-especial .steam-path { stroke: var(--verde-chill); }
+
+.stamp-bakery.sello-especial.filled .bakery-main { fill: var(--verde-chill); }
+.stamp-bolt.sello-especial.filled .bolt-main { fill: var(--verde-chill); }
