@@ -110,7 +110,6 @@
         td { font-size: 15px; color: var(--dark); font-weight: 600;}
         tr:last-child td { border-bottom: none; }
         
-        /* Badges monocromáticos */
         .badge { background: var(--dark); color: var(--bg-card); padding: 6px 12px; border-radius: 12px; font-size: 12px; font-weight: 800; }
         .badge-outline { border: 2px solid var(--dark); color: var(--dark); padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 800; }
         
@@ -273,7 +272,6 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
-        // Configuración de Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyCaqJraAXeZ8F4zCd9GUIdNIHhfU7FMzJk",
             authDomain: "club-cafe-app.firebaseapp.com",
@@ -294,7 +292,6 @@
         let todosLosClientes = [];
         let filtroActual = 'todos'; 
         
-        // Formateador de meses para que sea más legible (Ej: "Ene 26")
         const nombresMeses = { "01":"Ene", "02":"Feb", "03":"Mar", "04":"Abr", "05":"May", "06":"Jun", "07":"Jul", "08":"Ago", "09":"Sep", "10":"Oct", "11":"Nov", "12":"Dic" };
 
         if (sessionStorage.getItem('adminAutorizado') === 'true') {
@@ -367,12 +364,12 @@
             let totalCafesCanjeados = 0;
             let totalSellosHistoricos = 0;
             let clientesActivos = 0; 
+            let clientesFidelizados = 0;
             
             let grupoInicio = 0; 
             let grupoMedio = 0;  
             let grupoCerca = 0;  
 
-            // Lógica del gráfico de crecimiento a lo largo del tiempo
             let clientesPorMes = {};
 
             clientesFiltrados.forEach(c => {
@@ -382,12 +379,12 @@
                 c.lifetimeValue = consumoHistorico; 
                 
                 if (consumoHistorico > 0) clientesActivos++;
+                if (c.premios > 0) clientesFidelizados++;
 
                 if(c.puntos <= 3) grupoInicio++;
                 else if(c.puntos <= 7) grupoMedio++;
                 else if(c.puntos <= 9) grupoCerca++;
 
-                // Para la curva de crecimiento
                 if(c.fecha) {
                     let mesStr = c.fecha.substring(0, 7);
                     clientesPorMes[mesStr] = (clientesPorMes[mesStr] || 0) + 1;
@@ -399,7 +396,6 @@
             document.getElementById('uiCafesCanjeados').innerText = totalCafesCanjeados;
             document.getElementById('uiClientesActivos').innerText = clientesActivos;
 
-            // Ordenamos la tabla de clientes VIP
             clientesFiltrados.sort((a, b) => b.lifetimeValue - a.lifetimeValue);
             const tbody = document.getElementById('tablaClientes');
             tbody.innerHTML = '';
@@ -415,7 +411,6 @@
                 tbody.appendChild(tr);
             });
 
-            // Preparamos datos para el gráfico principal según el filtro
             let labelsGrafico = [];
             let dataGrafico = [];
             
@@ -430,21 +425,20 @@
                     dataGrafico.push(sumAcumulada);
                 });
             } else {
-                document.getElementById('tituloGraficoPrincipal').innerText = "Resumen de Actividad";
-                document.getElementById('subtituloGraficoPrincipal').innerText = "Estadísticas del mes elegido";
+                document.getElementById('tituloGraficoPrincipal').innerText = "Retención del Mes";
+                document.getElementById('subtituloGraficoPrincipal').innerText = "¿Cuántos realmente volvieron?";
             }
 
-            actualizarGraficos(mesFiltro === 'todos', labelsGrafico, dataGrafico, totalClientes, totalSellosHistoricos, totalCafesCanjeados, grupoInicio, grupoMedio, grupoCerca);
+            actualizarGraficos(mesFiltro === 'todos', labelsGrafico, dataGrafico, totalClientes, clientesActivos, clientesFidelizados, grupoInicio, grupoMedio, grupoCerca);
         }
 
-        function actualizarGraficos(esHistorico, labelsCrecimiento, dataCrecimiento, totalC, totalTazas, totalP, gInicio, gMedio, gCerca) {
+        function actualizarGraficos(esHistorico, labelsCrecimiento, dataCrecimiento, totalC, activos, fidelizados, gInicio, gMedio, gCerca) {
             Chart.defaults.font.family = "'Inter', sans-serif";
             Chart.defaults.color = '#111111';
             
             const ctxBarras = document.getElementById('graficoEstadisticas').getContext('2d');
             if(graficoBarras) graficoBarras.destroy(); 
 
-            // Si es TODO EL HISTORIAL, dibuja la línea de tiempo. Si es un MES, dibuja barras comparativas de actividad
             if(esHistorico) {
                 graficoBarras = new Chart(ctxBarras, {
                     type: 'line',
@@ -476,11 +470,11 @@
                 graficoBarras = new Chart(ctxBarras, {
                     type: 'bar',
                     data: {
-                        labels: ['Resumen de la Actividad'],
+                        labels: ['Progreso del cliente'],
                         datasets: [
-                            { label: 'Nuevas Tarjetas', data: [totalC], backgroundColor: '#CCCCCC', borderRadius: 6 },
-                            { label: 'Tazas Consumidas', data: [totalTazas], backgroundColor: '#666666', borderRadius: 6 },
-                            { label: 'Premios Ganados', data: [totalP], backgroundColor: '#111111', borderRadius: 6 }
+                            { label: 'Se anotaron', data: [totalC], backgroundColor: '#CCCCCC', borderRadius: 6 },
+                            { label: 'Volvieron (>1 taza)', data: [activos], backgroundColor: '#666666', borderRadius: 6 },
+                            { label: 'Fidelizados (Premio)', data: [fidelizados], backgroundColor: '#111111', borderRadius: 6 }
                         ]
                     },
                     options: {
@@ -495,7 +489,6 @@
                 });
             }
 
-            // Gráfico 2: Termómetro Operativo
             const ctxDona = document.getElementById('graficoProgreso').getContext('2d');
             if(graficoDona) graficoDona.destroy();
 
